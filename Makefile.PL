@@ -10,6 +10,7 @@ WriteMakefile
           'VERSION_FROM' => 'lib/Mojolicious/Plugin/SMS.pm',
           'PREREQ_PM' => {
                            'Mojolicious' => '1.17',
+                           'SMS::Send' => '0.04',
                            'Test::More' => 0
                          },
           'INSTALLDIRS' => 'site',
