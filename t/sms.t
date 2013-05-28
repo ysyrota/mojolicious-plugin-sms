@@ -5,7 +5,11 @@ use warnings;
 # Disable IPv6, epoll and kqueue
 BEGIN { $ENV{MOJO_NO_IPV6} = $ENV{MOJO_POLL} = 1 }
 
+use Mojolicious;
 use Mojolicious::Lite;
+
+my $mojolicious_version = Mojolicious->VERSION;
+my $method = $mojolicious_version >= 4 ? 'json_is' : 'json_content_is';
 
 app->log->level('error');
 
@@ -16,7 +20,7 @@ plugin SMS => {
 get '/simplest' => sub {
 	my $self = shift;
 	my $rv = $self->sms('+380506022375', "Hello!");
-	$self->render_json({ ok => $rv})
+	$self->render( json => { ok => $rv} )
 };
 
 get '/simple' => sub {
@@ -25,7 +29,7 @@ get '/simple' => sub {
 		to   => '+380506022375',
 		text => "Hello!",
 	);
-	$self->render_json({ ok => $rv });
+	$self->render( json => { ok => $rv } );
 };
 
 use Test::More tests => 6;
@@ -35,10 +39,10 @@ my $t = Test::Mojo->new;
 
 $t->get_ok('/simplest')
   ->status_is(200)
-  ->json_content_is({ok => 1})
+  ->$method({ok => 1})
 ;
 
 $t->get_ok('/simple')
   ->status_is(200)
-  ->json_content_is({ok => 1})
+  ->$method({ok => 1})
 ;
