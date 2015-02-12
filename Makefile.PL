@@ -15,6 +15,18 @@ WriteMakefile
                          },
           'INSTALLDIRS' => 'site',
           'EXE_FILES' => [],
-          'PL_FILES' => {}
+          'PL_FILES' => {},
+          'META_MERGE' => {
+                    'resources' => {
+                              repository => {
+                                        type => 'git',
+                                        url  => 'https://github.com/ysyrota/mojolicious-plugin-sms.git',
+                                        web  => 'https://github.com/ysyrota/mojolicious-plugin-sms',
+                              },
+                              bugtracker => {
+                                        web => 'https://github.com/ysyrota/mojolicious-plugin-sms/issues',
+                              },
+                    },
+          },
         )
 ;
