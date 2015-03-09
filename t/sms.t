@@ -39,10 +39,10 @@ my $t = Test::Mojo->new;
 
 $t->get_ok('/simplest')
   ->status_is(200)
-  ->$method({ok => 1})
+  ->$method('/ok' => 1)
 ;
 
 $t->get_ok('/simple')
   ->status_is(200)
-  ->$method({ok => 1})
+  ->$method('/ok' => 1)
 ;
