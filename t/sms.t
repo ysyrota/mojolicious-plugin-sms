@@ -9,7 +9,6 @@ use Mojolicious;
 use Mojolicious::Lite;
 
 my $mojolicious_version = Mojolicious->VERSION;
-my $method = $mojolicious_version >= 4 ? 'json_is' : 'json_content_is';
 
 app->log->level('error');
 
@@ -39,10 +38,10 @@ my $t = Test::Mojo->new;
 
 $t->get_ok('/simplest')
   ->status_is(200)
-  ->$method('/ok' => 1)
+  ->json_is('/ok' => 1)
 ;
 
 $t->get_ok('/simple')
   ->status_is(200)
-  ->$method('/ok' => 1)
+  ->json_is('/ok' => 1)
 ;
