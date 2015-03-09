@@ -2,7 +2,7 @@ package Mojolicious::Plugin::SMS;
 use Mojo::Base 'Mojolicious::Plugin';
 use SMS::Send;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub register {
   my ($self, $app, $conf) = @_;
